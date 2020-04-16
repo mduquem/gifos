@@ -13,45 +13,65 @@
             Número de visitas: 12.765.803
          </p>
       </header>
-      <div class="container">
-         <div class="row">
-            <div class="col-md-10 mx-auto display-flex">
-               <img src="assets/img/gifOF_logo.png" alt="gifOS Logo" />
-               <button class="main-button">Crear Guifos</button>
-               <button class="main-button" id="theme-toggler">
-                  Elegir tema
-               </button>
-               <div>
-                  Mis Guifos
-               </div>
-            </div>
-         </div>
-         <div class="row">
-            <div class="col-md-10 mx-auto display-flex"></div>
-         </div>
-         <div class="row">
-            <div class="col-md-10 mx-auto">
-               <div class="card card-body">
-                  <div class="card-header">
-                     Buscar
-                  </div>
-               </div>
-               <form class="input-group">
-                  <input
-                     class="form-control"
-                     type="search"
-                     name=""
-                     id="search-bar"
-                     placeholder="Busca gifs, hashtags, temas, busca lo que quieras…"
-                  />
-                  <button type="submit">Buscar</button>
-               </form>
-            </div>
-         </div>
-      </div>
 
       <main>
-         Gifs
+         <div class="container">
+            <section id="search">
+               <div class="search-nav">
+                  <img src="assets/img/gifOF_logo.png" alt="gifOS Logo" />
+                  <div>
+                     <button class="main-btn">Crear Guifos</button>
+                     <button class="main-btn" id="theme-toggler">
+                        Elegir tema
+                     </button>
+                     <button>Mis Guifos</button>
+                  </div>
+               </div>
+               <div class="search-input">
+                  <div class="search-input-header">
+                     <p>Buscar</p>
+                  </div>
+                  <div class="search-input-group">
+                     <form>
+                        <input
+                           class="search-input-bar"
+                           type="text"
+                           id="search-bar"
+                           placeholder="Busca gifs, hashtags, temas, busca lo que quieras…"
+                        />
+                        <button class="search-btn" type="submit">
+                           <img src="assets/svg/lupa.svg" alt="" /> Buscar
+                        </button>
+                     </form>
+                  </div>
+               </div>
+            </section>
+
+            <section id="suggestions" class="suggestions">
+               <div class="suggestions-header"><p>Hoy te sugerimos:</p></div>
+               <div class="suggestions-gifs" id="suggestions-output">
+                  <div class="suggestions-card">
+                     <div class="suggestions-card-header">
+                        <p>#Jonathanvanness</p>
+                        <button class="btn-unstyled">
+                           <img
+                              src="assets/svg/button close.svg"
+                              alt="Boton cerrar"
+                           />
+                        </button>
+                     </div>
+                     <iframe frameborder="0"></iframe>
+                  </div>
+               </div>
+            </section>
+
+            <section id="trending">
+               <div style="margin-top: 64px;" class="suggestions-header">
+                  <p>Tendencias:</p>
+               </div>
+               <div id="output"></div>
+            </section>
+         </div>
       </main>
       <script src="assets/scripts/app.js"></script>
    </body>

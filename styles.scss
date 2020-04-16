@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css?family=Chakra+Petch&display=swap');
+
+$backgorund-color: #fdf4fd;
+$blue-gradient: linear-gradient(270deg, #f7c9f3 0%, #4180f6 100%);
+$btn-color: #f7c9f3;
+$btn-color-dark: #ee3efe;
+$blue: #110038;
+$windows-grey: #e6e6e6;
+$windows-grey-btn: #b4b4b4;
+
+body {
+   font-family: 'Chakra Petch', sans-serif;
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   background-color: $backgorund-color;
+}
+
+.container {
+   width: 1194px;
+   height: 100%;
+   margin: 0 auto;
+}
+
+.header {
+   background-image: $blue-gradient;
+   box-shadow: 0 1px 0 0 $blue;
+   margin: 0;
+   p {
+      margin: 0;
+      color: white;
+      font-size: 12px;
+   }
+}
+
+.main-btn {
+   width: 144px;
+   height: 36px;
+   margin-right: 16px;
+   background: $btn-color;
+   border: 1px solid $blue;
+   box-shadow: inset -1px -1px 0 0 #997d97, inset 1px 1px 0 0 #a37d7d;
+   cursor: pointer;
+}
+
+.btn-unstyled {
+   all: unset;
+   cursor: pointer;
+}
+
+.search-nav {
+   margin-top: 35px;
+   margin-bottom: 16px;
+   display: flex;
+   justify-content: space-between;
+}
+
+.search-input {
+   width: 100%;
+   height: 99px;
+
+   background: $windows-grey;
+   box-shadow: inset -2px -2px 0 0 #b4b4b4, inset 2px 2px 0 0 #ffffff;
+}
+
+.search-input-header {
+   background-image: $blue-gradient;
+   height: 24px;
+   display: flex;
+   align-items: center;
+   padding: 6px;
+   p {
+      font-size: 14px;
+      color: #ffffff;
+      letter-spacing: 0;
+   }
+}
+
+.search-input-group {
+   display: flex;
+   justify-content: space-around;
+   margin-top: 12px;
+}
+
+.search-input-bar {
+   width: 1037px;
+   height: 48px;
+   border: 1px solid #979797;
+   box-shadow: inset -2px -2px 0 0 #e6e6e6, inset 2px 2px 0 0 #000000;
+   ::placeholder {
+      margin: 16px;
+      font-size: 16px;
+      color: $windows-grey-btn;
+      letter-spacing: 0;
+      line-height: 22px;
+   }
+}
+
+.search-btn {
+   width: 102px;
+   height: 36px;
+   background: $windows-grey;
+   font-size: 16px;
+   color: $windows-grey-btn;
+   letter-spacing: 0;
+   line-height: 18px;
+   margin-right: 8px;
+   cursor: pointer;
+}
+
+.suggestions {
+   margin-top: 64px;
+}
+
+.suggestions-header {
+   height: 32px;
+   background: #fffafe;
+   border: 1px solid #e6bbe2;
+   box-shadow: inset -2px -2px 0 0 #e6dce4, inset 2px 2px 0 0 #80687d;
+   display: flex;
+   align-items: center;
+   p {
+      margin-left: 7px;
+      font-size: 14px;
+      color: $blue;
+      letter-spacing: 0;
+   }
+}
+
+.suggestions-gifs {
+   display: flex;
+}
+
+.suggestions-card {
+   height: 304px;
+   width: 280px;
+   margin-top: 16px;
+   margin-right: 24px;
+}
+
+.suggestions-card-header {
+   background-image: $blue-gradient;
+   width: 280px;
+   height: 24px;
+   margin: 0;
+   display: flex;
+   justify-content: space-between;
+   padding: 4px;
+   p {
+      margin: 0;
+      font-size: 14px;
+      color: #ffffff;
+      letter-spacing: 0;
+   }
+   iframe {
+      height: 280px;
+      width: 280px;
+   }
+}
