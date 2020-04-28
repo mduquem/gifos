@@ -9,8 +9,8 @@
    <body>
       <header class="header">
          <p>
-            ¡Bienvenidos/as a Guifos.com! ——————Donde los gifs están.//////
-            Número de visitas: 12.765.803
+            ¡Bienvenidos/as a Guifos.com! ——————Donde los gifs están.////// Número de visitas:
+            12.765.803
          </p>
       </header>
 
@@ -18,13 +18,14 @@
          <div class="container">
             <section id="search">
                <div class="search-nav">
-                  <img src="assets/img/gifOF_logo.png" alt="gifOS Logo" />
+                  <img id="logo" src="assets/img/gifOF_logo.png" alt="gifOS Logo" />
                   <div>
                      <button class="main-btn">Crear Guifos</button>
-                     <button class="main-btn" id="theme-toggler">
-                        Elegir tema
-                     </button>
-                     <button>Mis Guifos</button>
+
+                     <div class="dark-form">
+                        <label>Elegir tema</label>
+                        <input type="checkbox" class="toggle" id="theme-switch" />
+                     </div>
                   </div>
                </div>
                <div class="search-input">
@@ -39,11 +40,12 @@
                            id="search-bar"
                            placeholder="Busca gifs, hashtags, temas, busca lo que quieras…"
                         />
-                        <button class="search-btn" type="submit">
+                        <button class="search-btn" type="submit" id="search-btn">
                            <img src="assets/svg/lupa.svg" alt="" /> Buscar
                         </button>
                      </form>
                   </div>
+                  <div id="suggestions-output"></div>
                </div>
             </section>
 
@@ -52,12 +54,9 @@
                <div class="suggestions-gifs" id="suggestions-output">
                   <div class="suggestions-card">
                      <div class="suggestions-card-header">
-                        <p>#Jonathanvanness</p>
+                        <!-- <p>#Jonathanvanness</p> -->
                         <button class="btn-unstyled">
-                           <img
-                              src="assets/svg/button close.svg"
-                              alt="Boton cerrar"
-                           />
+                           <img src="assets/svg/button close.svg" alt="Boton cerrar" />
                         </button>
                      </div>
                      <iframe frameborder="0"></iframe>
@@ -69,10 +68,12 @@
                <div style="margin-top: 64px;" class="suggestions-header">
                   <p>Tendencias:</p>
                </div>
-               <div id="output"></div>
+               <ul id="output"></ul>
             </section>
          </div>
       </main>
+      <script src="assets/scripts/giphy.js"></script>
+      <script src="assets/scripts/ui.js"></script>
       <script src="assets/scripts/app.js"></script>
    </body>
 </html>

@@ -1,16 +1,44 @@
 @import url("https://fonts.googleapis.com/css?family=Chakra+Petch&display=swap");
+:root {
+  --primary-color: #fdf4fd;
+  --bg-color: #fdf4fd;
+  --btn-color: #f7c9f3;
+  --btn-font-color: black;
+}
+
+[data-theme=dark] {
+  --primary-color: #fdf4fd;
+  --btn-color: #ee3efe;
+  --bg-color: #130b38;
+  --btn-font-color: #ffff;
+}
+
+.dark-form label {
+  color: var(--btn-font-color);
+}
+
 body {
   font-family: "Chakra Petch", sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: #fdf4fd;
+  background-color: var(--bg-color);
 }
 
 .container {
   width: 1194px;
   height: 100%;
   margin: 0 auto;
+}
+@media (max-width: 720px) {
+  .container {
+    width: 720px;
+  }
+}
+@media (max-width: 375px) {
+  .container {
+    width: 375px;
+  }
 }
 
 .header {
@@ -28,10 +56,11 @@ body {
   width: 144px;
   height: 36px;
   margin-right: 16px;
-  background: #f7c9f3;
+  background: var(--btn-color);
   border: 1px solid #110038;
   box-shadow: inset -1px -1px 0 0 #997d97, inset 1px 1px 0 0 #a37d7d;
   cursor: pointer;
+  color: var(--btn-font-color);
 }
 
 .btn-unstyled {
@@ -85,6 +114,16 @@ body {
   letter-spacing: 0;
   line-height: 22px;
 }
+@media (max-width: 720px) {
+  .search-input-bar {
+    width: 720px;
+  }
+}
+@media (max-width: 375px) {
+  .search-input-bar {
+    width: 375px;
+  }
+}
 
 .search-btn {
   width: 102px;
@@ -97,9 +136,15 @@ body {
   margin-right: 8px;
   cursor: pointer;
 }
+@media (max-width: 375px) {
+  .search-btn {
+    width: 100%;
+  }
+}
 
 .suggestions {
-  margin-top: 64px;
+  padding-top: 200px;
+  background-color: #e6e6e6;
 }
 
 .suggestions-header {
@@ -124,8 +169,24 @@ body {
 .suggestions-card {
   height: 304px;
   width: 280px;
-  margin-top: 16px;
   margin-right: 24px;
+  background: #f0f0f0;
+  border: 1px solid #080808;
+  box-shadow: inset -1px -1px 0 0 #b4b4b4, inset 1px 1px 0 0 #ffffff;
+}
+
+.result-list {
+  list-style-type: none;
+  padding: 10px 10px 0 25px;
+  margin: 0;
+  margin-top: 16px;
+  border: 1px solid #080808;
+  box-shadow: inset -1px -1px 0 0 #b4b4b4, inset 1px 1px 0 0 #ffffff;
+}
+
+.suggestions-card-item {
+  width: 1000px;
+  height: 36px;
 }
 
 .suggestions-card-header {
@@ -146,6 +207,13 @@ body {
 .suggestions-card-header iframe {
   height: 280px;
   width: 280px;
+}
+
+.gif-card-container {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  flex-wrap: wrap;
 }
 
 /*# sourceMappingURL=styles.css.map */
