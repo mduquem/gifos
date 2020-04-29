@@ -13,10 +13,23 @@ searchInput.addEventListener('keyup', (event) => {
    if (userText != '') {
       giphy.getSearchResults(userText).then((data) => {
          ui.paintSuggestions(data.gifData.data);
+         ui.paintSuggestionsImage(data.gifData.data);
       });
    } else {
       ui.clearProfile();
    }
+});
+
+const searchEvent = document.getElementById('search-btn');
+
+searchEvent.addEventListener('click', (event) => {
+   event.preventDefault();
+   ui.pagination = ui.pagination + 1;
+});
+
+const onSearchInputChange = document.getElementById('search-bar');
+onSearchInputChange.addEventListener('change', (event) => {
+   console.log(event.target.value);
 });
 
 window.onload = () => {

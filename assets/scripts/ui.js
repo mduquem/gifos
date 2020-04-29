@@ -4,6 +4,7 @@ class UI {
       this.name = name;
       this.key = key;
       this.dark = false;
+      this.pagination = 0;
    }
 
    switchTheme() {
@@ -44,10 +45,8 @@ class UI {
       data = data.randomData;
       const output = document.getElementById('suggestions-output');
 
-      console.log(data);
       for (let index = 0; index < data.length; index++) {
          const element = data[index];
-         console.log(element);
          const url = element.data.images.downsized.url;
          const width = element.data.images.downsized.width;
          const height = element.data.images.downsized.height;
@@ -78,6 +77,82 @@ class UI {
       setTimeout(() => {
          suggestionsOutput.innerHTML = '';
       }, 1000000000);
+   }
+
+   paintSuggestionsImage(data) {
+      const suggestionsImage = document.getElementById('suggestions-card-image');
+      const resultImageList = document.createElement('ul');
+      resultImageList.className = 'result-list-image';
+
+      suggestionsImage.innerHTML = '';
+      for (let index = 0; index < 4; index++) {
+         const element = data[index].images.downsized.url;
+         const title = data[index].title;
+
+         const listItem = document.createElement('li');
+         listItem.className = 'suggestions-image-item';
+         listItem.innerHTML = `
+         <div class="suggestions-card">
+
+         <div class="suggestions-card-header">
+           <p>#${title}</p> 
+            <button class="btn-unstyled">
+               <img src="assets/svg/button close.svg" alt="Boton cerrar" />
+            </button>
+         </div>
+         <img height="280px" width="280px" src=${element} alt="" />
+
+
+         <div class="suggestions-output" id="suggestions-output"></div>
+      </div>
+         
+         
+         `;
+
+         // const listImage = document.createElement('img');
+         // listImage.setAttribute('src', `${element}`);
+         // listItem.appendChild(listImage);
+         resultImageList.appendChild(listItem);
+      }
+      suggestionsImage.appendChild(resultImageList);
+   }
+
+   paintSearchImage() {
+      const suggestionsImage = document.getElementById('suggestions-card-image');
+      const resultImageList = document.createElement('ul');
+      resultImageList.className = 'result-list-image';
+
+      suggestionsImage.innerHTML = '';
+      for (let index = 0; index < 24; index++) {
+         const element = data[index].images.downsized.url;
+         const title = data[index].title;
+
+         const listItem = document.createElement('li');
+         listItem.className = 'suggestions-image-item';
+         listItem.innerHTML = `
+         <div class="suggestions-card">
+
+         <div class="suggestions-card-header">
+           <p>#${title}</p> 
+            <button class="btn-unstyled">
+               <img src="assets/svg/button close.svg" alt="Boton cerrar" />
+            </button>
+         </div>
+         <img height="280px" width="280px" src=${element} alt="" />
+
+
+         <div class="suggestions-output" id="suggestions-output"></div>
+      </div>
+         
+         
+         `;
+
+         // const listImage = document.createElement('img');
+         // listImage.setAttribute('src', `${element}`);
+         // listItem.appendChild(listImage);
+         resultImageList.appendChild(listItem);
+      }
+      suggestionsImage.appendChild(resultImageList);
    }
 
    clearProfile() {}

@@ -171,12 +171,23 @@ button {
 }
 
 .suggestions-card {
+  margin: 0;
+  padding: 0;
   height: 304px;
   width: 280px;
   margin-right: 24px;
   background: #f0f0f0;
   border: 1px solid #080808;
   box-shadow: inset -1px -1px 0 0 #b4b4b4, inset 1px 1px 0 0 #ffffff;
+}
+.suggestions-card img {
+  cursor: pointer;
+}
+
+.result-list-image {
+  display: flex;
+  list-style: none;
+  padding: 0;
 }
 
 .result-list {
@@ -188,6 +199,10 @@ button {
   box-shadow: inset -1px -1px 0 0 #b4b4b4, inset 1px 1px 0 0 #ffffff;
 }
 
+.suggestions-card-image {
+  display: flex;
+}
+
 .suggestions-card-item {
   width: 1000px;
   height: 36px;
@@ -195,7 +210,7 @@ button {
 
 .suggestions-card-header {
   background-image: linear-gradient(270deg, #f7c9f3 0%, #4180f6 100%);
-  width: 280px;
+  width: 100%;
   height: 24px;
   margin: 0;
   display: flex;
@@ -208,10 +223,6 @@ button {
   color: #ffffff;
   letter-spacing: 0;
 }
-.suggestions-card-header iframe {
-  height: 280px;
-  width: 280px;
-}
 
 .gif-card-container {
   margin: 0;
@@ -223,8 +234,14 @@ button {
 .list-trending {
   list-style: none;
   display: flex;
-  overflow-x: scroll;
+  overflow-x: visible;
+  flex-wrap: wrap;
   padding: 0;
+  justify-content: center;
+}
+.list-trending img {
+  height: 280px;
+  width: 280px;
 }
 
 .trending-image {
