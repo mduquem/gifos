@@ -18,3 +18,14 @@ searchInput.addEventListener('keyup', (event) => {
       ui.clearProfile();
    }
 });
+
+window.onload = () => {
+   giphy.getTrendingResults().then((res) => {
+      ui.paintTrendingGifs(res);
+   });
+   giphy.getRandomResults().then((res) => {
+      ui.paintRandomGifs(res);
+      ui.paintRandomGifs(res);
+      ui.paintRandomGifs(res);
+   });
+};

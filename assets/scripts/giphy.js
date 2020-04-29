@@ -1,5 +1,4 @@
 // Every API Request will be handled in this file
-
 class Giphy {
    constructor() {
       this.apiKey = 'EVXJhVK8O4M0zOGlqExmwJZXNiX9rMTE';

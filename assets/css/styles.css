@@ -25,6 +25,10 @@ body {
   background-color: var(--bg-color);
 }
 
+button {
+  font-weight: 900;
+}
+
 .container {
   width: 1194px;
   height: 100%;
@@ -214,6 +218,20 @@ body {
   padding: 0;
   width: 100%;
   flex-wrap: wrap;
+}
+
+.list-trending {
+  list-style: none;
+  display: flex;
+  overflow-x: scroll;
+  padding: 0;
+}
+
+.trending-image {
+  cursor: pointer;
+}
+.trending-image:hover {
+  border: 1px solid #110038;
 }
 
 /*# sourceMappingURL=styles.css.map */

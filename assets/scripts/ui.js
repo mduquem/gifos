@@ -22,19 +22,42 @@ class UI {
    }
 
    paintTrendingGifs(data) {
-      for (let index = 0; index < data.length; index++) {
+      data = data.trendingData.data;
+      const output = document.getElementById('trending-output');
+      const resultList = document.createElement('ul');
+
+      resultList.className = 'list-trending';
+
+      for (let index = 0; index < 4; index++) {
          const element = data[index];
-         results.push(element);
          const listItem = document.createElement('li');
+         resultList.appendChild(listItem);
 
          listItem.innerHTML = `
-             <iframe src=${element.images.downsized.url} width=${element.images.downsized.width} height=${element.images.downsized.height} style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+             <img class="trending-image" src=${element.images.downsized.url} width=${element.images.downsized.width} height=${element.images.downsized.height}  />
        `;
-         resultList.appendChild(listItem);
       }
-      document.getElementById('output').appendChild(resultList);
+      output.appendChild(resultList);
+   }
 
-      return results;
+   paintRandomGifs(data) {
+      data = data.randomData;
+      const output = document.getElementById('suggestions-output');
+
+      console.log(data);
+      for (let index = 0; index < data.length; index++) {
+         const element = data[index];
+         console.log(element);
+         const url = element.data.images.downsized.url;
+         const width = element.data.images.downsized.width;
+         const height = element.data.images.downsized.height;
+
+         const newImage = document.createElement('img');
+         newImage.setAttribute('src', `${url}`);
+         newImage.style.width = width;
+         newImage.style.height = height;
+         output.insertBefore(newImage, output.firstElementChild);
+      }
    }
 
    paintSuggestions(data) {
