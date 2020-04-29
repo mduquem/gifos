@@ -1,5 +1,6 @@
 const ui = new UI();
 const giphy = new Giphy();
+const browser = new Browser();
 
 const toggleSwitch = document.querySelector('#theme-switch');
 toggleSwitch.addEventListener('click', () => {
@@ -30,6 +31,16 @@ searchEvent.addEventListener('click', (event) => {
 const onSearchInputChange = document.getElementById('search-bar');
 onSearchInputChange.addEventListener('change', (event) => {
    console.log(event.target.value);
+});
+
+const createNewGif = document.getElementById('create-gif-btn');
+createNewGif.addEventListener('click', () => {
+   browser
+      .getStream()
+      .then((res) => {
+         ui.handleVideo(res);
+      })
+      .catch((err) => console.log(err));
 });
 
 window.onload = () => {
