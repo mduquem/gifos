@@ -155,13 +155,5 @@ class UI {
       suggestionsImage.appendChild(resultImageList);
    }
 
-   handleVideo(stream) {
-      console.log('hola');
-      /* use the stream */
-      const video = document.getElementById('video-output');
-      // video.setAttribute('src', window.URL.createObjectURL(stream));
-      video.srcObject = stream;
-   }
-
    clearProfile() {}
 }

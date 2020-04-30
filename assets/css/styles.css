@@ -172,6 +172,7 @@ button {
 
 .suggestions-card {
   margin: 0;
+  margin-right: 0;
   padding: 0;
   height: 304px;
   width: 280px;
@@ -188,6 +189,7 @@ button {
   display: flex;
   list-style: none;
   padding: 0;
+  flex-wrap: wrap;
 }
 
 .result-list {

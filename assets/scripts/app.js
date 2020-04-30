@@ -33,16 +33,6 @@ onSearchInputChange.addEventListener('change', (event) => {
    console.log(event.target.value);
 });
 
-const createNewGif = document.getElementById('create-gif-btn');
-createNewGif.addEventListener('click', () => {
-   browser
-      .getStream()
-      .then((res) => {
-         ui.handleVideo(res);
-      })
-      .catch((err) => console.log(err));
-});
-
 window.onload = () => {
    giphy.getTrendingResults().then((res) => {
       ui.paintTrendingGifs(res);
