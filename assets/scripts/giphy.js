@@ -38,4 +38,26 @@ class Giphy {
          randomData,
       };
    }
+
+   async uploadGif(data) {
+      const headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      const config = {
+         method: 'POST',
+         body: ,
+         headers: headers,
+         mode: 'cors',
+         cache: 'default',
+      };
+      const uploadResponse = await fetch(
+         `https://upload.giphy.com/v1/gifs?api_key=${this.apiKey}`,
+         config
+      );
+
+      const uploadData = await uploadResponse.json();
+      console.log(uploadData);
+      return {
+         uploadData,
+      };
+   }
 }
