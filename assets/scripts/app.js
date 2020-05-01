@@ -29,9 +29,7 @@ searchEvent.addEventListener('click', (event) => {
 });
 
 const onSearchInputChange = document.getElementById('search-bar');
-onSearchInputChange.addEventListener('change', (event) => {
-   console.log(event.target.value);
-});
+onSearchInputChange.addEventListener('change', (event) => {});
 
 window.onload = () => {
    giphy.getTrendingResults().then((res) => {

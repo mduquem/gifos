@@ -2,6 +2,7 @@
 class Giphy {
    constructor() {
       this.apiKey = 'EVXJhVK8O4M0zOGlqExmwJZXNiX9rMTE';
+      this.body = null;
    }
 
    async getSearchResults(search) {
@@ -36,28 +37,6 @@ class Giphy {
 
       return {
          randomData,
-      };
-   }
-
-   async uploadGif(data) {
-      const headers = new Headers();
-      headers.append('Content-Type', 'application/json');
-      const config = {
-         method: 'POST',
-         body: ,
-         headers: headers,
-         mode: 'cors',
-         cache: 'default',
-      };
-      const uploadResponse = await fetch(
-         `https://upload.giphy.com/v1/gifs?api_key=${this.apiKey}`,
-         config
-      );
-
-      const uploadData = await uploadResponse.json();
-      console.log(uploadData);
-      return {
-         uploadData,
       };
    }
 }

@@ -1,30 +1,37 @@
 const browser = new Browser();
-
-const UIVideo = new UI();
 const giphy = new Giphy();
+
+const startUpload = document.getElementById('start');
+startUpload.addEventListener('click', () => {
+   browser
+      .getStream()
+      .then((res) => {})
+      .catch((err) => {});
+});
 
 const createNewGif = document.getElementById('create-gif-btn');
 createNewGif.addEventListener('click', () => {
    browser
-      .getStream()
+      .startRecording()
       .then((res) => {
-         UIVideo.handleVideo(res);
+         file = res;
+         return res;
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {});
 });
 
 const stopRecording = document.getElementById('stop-recording');
 stopRecording.addEventListener('click', () => {
-   console.log('Hola desde el stopRecording');
-   fileInClient = true;
-   UIVideo.stopRecording(() => console.log('hola desde el callback!!!!!!!!'));
+   browser
+      .stopRecording()
+      .then((res) => {})
+      .catch((err) => {});
 });
 
 const uploadBtn = document.getElementById('upload-gif');
 uploadBtn.addEventListener('click', () => {
-   console.log('inside upload');
-
-   if (true) {
-      giphy.uploadGif();
-   }
+   browser
+      .uploadGif()
+      .then((res) => {})
+      .catch((err) => {});
 });
