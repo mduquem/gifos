@@ -1,21 +1,22 @@
 const browser = new Browser();
 const giphy = new Giphy();
+const ux = new UX();
 
-const startUpload = document.getElementById('start');
+let currentStep = 1;
+
+const startUpload = document.getElementById('first-success-btn');
 startUpload.addEventListener('click', () => {
    browser
       .getStream()
-      .then((res) => {})
-      .catch((err) => {});
-});
-
-const createNewGif = document.getElementById('create-gif-btn');
-createNewGif.addEventListener('click', () => {
-   browser
-      .startRecording()
       .then((res) => {
-         file = res;
-         return res;
+         currentStep = 2;
+         const createNewGif = document.getElementById('create-gif-btn');
+         createNewGif.addEventListener('click', () => {
+            browser
+               .startRecording()
+               .then()
+               .catch((err) => {});
+         });
       })
       .catch((err) => {});
 });

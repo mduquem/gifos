@@ -7,15 +7,41 @@
       <link rel="stylesheet" href="assets/css/styles.css" />
    </head>
    <body>
-      <a href="index.html">Go To Home</a>
-      <button id="start">Comenzar</button>
-      <button id="create-gif-btn">Grabar</button>
-      <button id="stop-recording">Stop</button>
-      <button id="upload-gif">Subir Archivo</button>
+      <div class="container">
+         <a class="main-btn" href="index.html">Go To Home</a>
+         <button class="main-btn" id="start">Comenzar</button>
+         <button class="main-btn">Grabar</button>
+         <button class="main-btn" id="stop-recording">Stop</button>
+         <button class="main-btn" id="upload-gif">Subir Archivo</button>
+         <div id="card-container" class="card-container">
+            <div class="search-input-header">
+               <p>Crear Guifos</p>
+            </div>
+            <div class="info-group">
+               <h5>Aquí podrás crear tus propios guifos</h5>
+               <p>
+                  Crear tu guifo es muy fácil, graba cualquier imagen con tu cámara y obtén guifos
+                  personalizados. Los pasos para crear tu guifo son: ¿Quieres comenzar a crear tu
+                  guifo ahora?
+               </p>
+               <ol>
+                  <li>Dar permisos de acceso a la cámara (sólo por el tiempo de uso)</li>
+                  <li>Capturar tu momento guifo</li>
 
-      <video id="video-output"></video>
+                  <li>Revisar el momento</li>
+
+                  <li>Listo para subir y compartir!</li>
+               </ol>
+               <div class="button-group">
+                  <button class="main-btn">Cancelar</button>
+                  <button id="first-success-btn" class="main-btn">Comenzar</button>
+               </div>
+            </div>
+         </div>
+      </div>
 
       <script src="https://www.WebRTC-Experiment.com/RecordRTC.js"></script>
+      <script src="assets/scripts/ux.js"></script>
 
       <script src="assets/scripts/browser.js"></script>
       <script src="assets/scripts/giphy.js"></script>

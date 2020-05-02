@@ -14,7 +14,6 @@ searchInput.addEventListener('keyup', (event) => {
    if (userText != '') {
       giphy.getSearchResults(userText).then((data) => {
          ui.paintSuggestions(data.gifData.data);
-         ui.paintSuggestionsImage(data.gifData.data);
       });
    } else {
       ui.clearProfile();
@@ -28,16 +27,32 @@ searchEvent.addEventListener('click', (event) => {
    ui.pagination = ui.pagination + 1;
 });
 
-const onSearchInputChange = document.getElementById('search-bar');
-onSearchInputChange.addEventListener('change', (event) => {});
-
 window.onload = () => {
    giphy.getTrendingResults().then((res) => {
       ui.paintTrendingGifs(res);
    });
    giphy.getRandomResults().then((res) => {
-      ui.paintRandomGifs(res);
-      ui.paintRandomGifs(res);
-      ui.paintRandomGifs(res);
+      // ui.paintRandomGifs(res.randomData.data);
+      ui.paintSuggestionsImage(res.randomData.data);
+
+      // ui.paintRandomGifs(res.randomData.data);
+   });
+   giphy.getRandomResults().then((res) => {
+      // ui.paintRandomGifs(res.randomData.data);
+      ui.paintSuggestionsImage(res.randomData.data);
+
+      // ui.paintRandomGifs(res.randomData.data);
+   });
+   giphy.getRandomResults().then((res) => {
+      // ui.paintRandomGifs(res.randomData.data);
+      ui.paintSuggestionsImage(res.randomData.data);
+
+      // ui.paintRandomGifs(res.randomData.data);
+   });
+   giphy.getRandomResults().then((res) => {
+      // ui.paintRandomGifs(res.randomData.data);
+      ui.paintSuggestionsImage(res.randomData.data);
+
+      // ui.paintRandomGifs(res.randomData.data);
    });
 };

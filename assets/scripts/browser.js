@@ -1,6 +1,8 @@
 class Browser {
    constructor() {
-      this.video = document.getElementById('video-output');
+      this.card = document.getElementById('card-container');
+      this.apiKey = 'EVXJhVK8O4M0zOGlqExmwJZXNiX9rMTE';
+
       this.stream = null;
       this.recorder = null;
       this.file = null;
@@ -13,14 +15,29 @@ class Browser {
             height: { max: 480 },
          },
       };
+      this.card.innerHTML = `
+      <div class="video-output-group">
+    
+            <video class="video-output" id="video-output">
+            </video>
+            <button id="create-gif-btn" class="main-btn overlapped-btn" style="z-index: 200">Capturar</button>
+         </div>
+       
+
+      
+`;
       try {
          this.stream = await navigator.mediaDevices.getUserMedia(constraints);
          // /* use the stream */
-         this.video.srcObject = this.stream;
-         this.video.play();
+         const video = document.getElementById('video-output');
+         video.srcObject = this.stream;
+         video.play();
+
+         console.log(this.video, this.stream);
          return this.stream;
       } catch (err) {
          /* handle the error */
+         console.log(err);
          return err;
       }
    }
@@ -53,12 +70,9 @@ class Browser {
             let blob = this.recorder.getBlob();
             this.file = new FormData();
             this.file.append('file', blob, 'myGif.gif');
-            console.log(this.file, 'form');
-            localStorage.setItem('gif', this.file.get());
-            console.log('finish');
+            localStorage.setItem('gif', this.file.get('file'));
          });
-         console.log(form);
-         return form;
+         return this.file;
       } catch (err) {
          return err;
       }
@@ -74,7 +88,7 @@ class Browser {
 
       try {
          const uploadResponse = await fetch(
-            `https://api.upload.giphy.com/v1/gifs?api_key=${this.apiKey}`,
+            `https://upload.giphy.com/v1/gifs?api_key=${this.apiKey}&file${this.body}`,
             config
          );
          return uploadResponse;

@@ -146,7 +146,6 @@ button {
 }
 
 .suggestions {
-   padding-top: 200px;
    background-color: $windows-grey;
 }
 
@@ -250,6 +249,7 @@ button {
 
 .trending-image {
    cursor: pointer;
+   margin-right: 16px;
    &:hover {
       border: 1px solid #110038;
    }
@@ -257,4 +257,24 @@ button {
 
 .create-gifs {
    background-color: red;
+}
+
+.card-container {
+   width: 100%;
+   height: auto;
+   background-color: $windows-grey;
+}
+
+.video-output-group {
+   position: relative;
+}
+
+.overlapped-btn {
+   position: absolute;
+   top: 50%;
+   left: 0;
+}
+
+.button-group {
+   display: flex;
 }
