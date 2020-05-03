@@ -2,9 +2,9 @@ const ui = new UI();
 const giphy = new Giphy();
 const browser = new Browser();
 
-const toggleSwitch = document.querySelector('#theme-switch');
-toggleSwitch.addEventListener('click', () => {
-   ui.switchTheme();
+const toggleSwitchBtn = document.querySelector('#theme-switch');
+toggleSwitchBtn.addEventListener('click', () => {
+   ui.toggleSwitch();
 });
 
 const searchInput = document.getElementById('search-bar');
@@ -12,10 +12,16 @@ searchInput.addEventListener('keyup', (event) => {
    const userText = event.target.value;
 
    if (userText != '') {
+      const searchBtn = document.getElementById('search-btn');
+      searchBtn.classList.add('active-search');
+
       giphy.getSearchResults(userText).then((data) => {
          ui.paintSuggestions(data.gifData.data);
       });
    } else {
+      const searchBtn = document.getElementById('search-btn');
+      searchBtn.classList.remove('active-search');
+
       ui.clearProfile();
    }
 });
@@ -23,11 +29,41 @@ searchInput.addEventListener('keyup', (event) => {
 const searchEvent = document.getElementById('search-btn');
 
 searchEvent.addEventListener('click', (event) => {
+   const searchInput = document.getElementById('search-bar').value;
    event.preventDefault();
-   ui.pagination = ui.pagination + 1;
+   giphy.getSearchResults(searchInput).then((res) => {
+      console.log('hello form search response', res);
+      if (res.gifData.pagination.total_count == 0) {
+         console.log('No results, im sorry');
+      }
+      ui.paintSearchResults(res.gifData.data);
+   });
+});
+
+const dayBtn = document.getElementById('day-theme');
+dayBtn.addEventListener('click', () => {
+   ui.switchToDay();
+});
+
+const nightBtn = document.getElementById('night-theme');
+nightBtn.addEventListener('click', () => {
+   ui.switchToNight();
+});
+
+const logo = document.getElementById('logo-anchor');
+logo.addEventListener('mouseenter', () => {
+   ui.onHoverLogo();
+});
+
+logo.addEventListener('mouseleave', () => {
+   ui.unHoverLogo();
 });
 
 window.onload = () => {
+   giphy.visitCounter().then((res) => {
+      console.log(res);
+   });
+   ui.switchTheme();
    giphy.getTrendingResults().then((res) => {
       ui.paintTrendingGifs(res);
    });

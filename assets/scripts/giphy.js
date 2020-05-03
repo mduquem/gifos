@@ -77,4 +77,18 @@ class Giphy {
    async getUploadedGif(id) {
       const response = fetch(`${this.idEndpoint}`);
    }
+
+   async visitCounter() {
+      const visitResponse = await fetch(`https://gifos-56c81.firebaseio.com/visits.json`, {
+         method: 'POST',
+         body: {
+            visits: 0,
+         },
+      });
+
+      const visitsData = await visitResponse.json();
+      return {
+         visitsData,
+      };
+   }
 }

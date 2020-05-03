@@ -1,7 +1,6 @@
 const browser = new Browser();
 const giphy = new Giphy();
-const ux = new UX();
-
+const ui = new UI();
 let currentStep = 1;
 
 const startUpload = document.getElementById('first-success-btn');
@@ -36,3 +35,7 @@ uploadBtn.addEventListener('click', () => {
       .then((res) => {})
       .catch((err) => {});
 });
+
+window.onload = () => {
+   ui.switchTheme();
+};

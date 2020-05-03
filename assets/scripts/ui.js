@@ -5,24 +5,80 @@ class UI {
       this.url = url;
       this.name = name;
       this.key = key;
-      this.dark = false;
-      this.pagination = 0;
       this.giphy = new Giphy();
+      this.theme = 'dark';
+      this.showToggle = false;
+   }
+
+   onHoverLogo() {
+      const logoImg = document.getElementById('logo');
+
+      if (this.theme == 'day') {
+         logoImg.setAttribute('src', 'assets/img/gifOF_logo_dark.png');
+      } else if (this.theme == 'dark') {
+         logoImg.setAttribute('src', 'assets/img/gifOF_logo.png');
+      }
+   }
+
+   unHoverLogo() {
+      const logoImg = document.getElementById('logo');
+
+      if (this.theme == 'dark') {
+         logoImg.setAttribute('src', 'assets/img/gifOF_logo_dark.png');
+      } else if (this.theme == 'day') {
+         logoImg.setAttribute('src', 'assets/img/gifOF_logo.png');
+      }
    }
 
    switchTheme() {
       const logoImg = document.getElementById('logo');
 
-      this.dark = !this.dark;
-      if (this.dark) {
+      const currentTheme = localStorage.getItem('theme');
+
+      if (currentTheme === 'day') {
+         this.theme = 'day';
+      } else if (currentTheme === 'dark') {
+         this.theme = 'dark';
+      }
+
+      if (this.theme != 'null' && this.theme == 'dark') {
          document.documentElement.setAttribute('data-theme', 'dark');
          logoImg.removeAttribute('src');
          logoImg.setAttribute('src', 'assets/img/gifOF_logo_dark.png');
-      } else {
+      } else if (this.theme == 'day') {
          document.documentElement.setAttribute('data-theme', 'light');
          logoImg.removeAttribute('src');
          logoImg.setAttribute('src', 'assets/img/gifOF_logo.png');
       }
+   }
+
+   toggleSwitch() {
+      const dayBtn = document.getElementById('day-theme');
+      const darkBtn = document.getElementById('night-theme');
+
+      this.showToggle = !this.showToggle;
+
+      if (!this.showToggle) {
+         dayBtn.style.visibility = 'hidden';
+         darkBtn.style.visibility = 'hidden';
+      } else if (this.showToggle) {
+         dayBtn.style.visibility = 'visible';
+         darkBtn.style.visibility = 'visible';
+      }
+
+      console.log('hello from toggle switch');
+   }
+
+   switchToDay() {
+      this.theme = 'day';
+      localStorage.setItem('theme', 'day');
+      this.switchTheme();
+   }
+
+   switchToNight() {
+      this.theme = 'dark';
+      localStorage.setItem('theme', 'dark');
+      this.switchTheme();
    }
 
    paintTrendingGifs(data) {
@@ -66,7 +122,6 @@ class UI {
    }
 
    paintSuggestionsImage(data) {
-      console.log(data);
       const suggestionsImage = document.getElementById('suggestions-card-image');
       const resultImageList = document.createElement('ul');
       resultImageList.className = 'result-list-image';
@@ -99,21 +154,33 @@ class UI {
       
       `;
 
-      console.log(`${this.giphy.getSearchResults(title)}`);
-
       suggestionsImage.insertBefore(listItem, suggestionsImage.lastElementChild);
       const suggBtn = document.getElementById('suggestions-btn');
       suggBtn.addEventListener('click', () => {
          this.giphy.getSearchResults(title).then((res) => {
-            this.paintSearchResults(res.gifData);
+            this.paintSearchResults(res.gifData.data);
          });
       });
    }
 
    paintSearchResults(data) {
-      console.log(data);
-      const output = document.getElementById('suggestions');
-      const outputList = document.createElement('ul');
+      const output = document.getElementById('search-results');
+      const listResult = document.createElement('ul');
+      listResult.className = 'search-results-list';
+
+      output.innerHTML = '';
+
+      for (let index = 0; index < data.length; index++) {
+         const url = data[index].images.downsized.url;
+
+         console.log(data[index]);
+
+         const newListItem = document.createElement('ul');
+         newListItem.innerHTML = `<li><img  width="280px" height="280px" src=${url} /></li>`;
+         listResult.insertBefore(newListItem, listResult.firstElementChild);
+      }
+
+      output.appendChild(listResult);
    }
 
    clearProfile() {}

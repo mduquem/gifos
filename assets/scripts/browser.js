@@ -33,11 +33,9 @@ class Browser {
          video.srcObject = this.stream;
          video.play();
 
-         console.log(this.video, this.stream);
          return this.stream;
       } catch (err) {
          /* handle the error */
-         console.log(err);
          return err;
       }
    }
