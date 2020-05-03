@@ -327,10 +327,16 @@ button {
 }
 
 .search-results-list {
+   list-style: none;
    display: flex;
    width: 100%;
    flex-wrap: wrap;
    list-style: none;
+}
+
+.image-results-list {
+   cursor: pointer;
+   margin-right: 20px;
 }
 
 .search-results {

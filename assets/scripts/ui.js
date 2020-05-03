@@ -181,8 +181,8 @@ class UI {
       for (let index = 0; index < data.length; index++) {
          const url = data[index].images.downsized.url;
 
-         const newListItem = document.createElement('ul');
-         newListItem.innerHTML = `<li><img  width="280px" height="280px" src=${url} /></li>`;
+         const newListItem = document.createElement('li');
+         newListItem.innerHTML = `<img class="img-results-list"  width="280px" height="280px" src=${url} />`;
          listResult.insertBefore(newListItem, listResult.firstElementChild);
       }
 
