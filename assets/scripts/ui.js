@@ -65,8 +65,6 @@ class UI {
          dayBtn.style.visibility = 'visible';
          darkBtn.style.visibility = 'visible';
       }
-
-      console.log('hello from toggle switch');
    }
 
    switchToDay() {
@@ -108,12 +106,22 @@ class UI {
       suggestionsOutput.innerHTML = '';
       for (let index = 0; index < 3; index++) {
          const element = data[index].title;
-
          const listItem = document.createElement('li');
-         listItem.textContent = `${element}`;
-         listItem.className = 'suggestions-card-item';
-         listItem.setAttribute('id', 'suggestion-item');
+
+         const btnElement = document.createElement('button');
+         btnElement.className = 'suggestion-item';
+
+         btnElement.innerHTML = `${element}`;
+         btnElement.setAttribute('id', 'suggestion-item');
+         listItem.appendChild(btnElement);
          resultList.appendChild(listItem);
+
+         btnElement.setAttribute('onclick', `this.giphy.getSearchResults(${element})`);
+         btnElement.onclick = function () {
+            this.giphy.getSearchResults(element).then((res) => {
+               this.paintSearchResults(res.gifData.data);
+            });
+         };
       }
       suggestionsOutput.appendChild(resultList);
       setTimeout(() => {
@@ -173,14 +181,20 @@ class UI {
       for (let index = 0; index < data.length; index++) {
          const url = data[index].images.downsized.url;
 
-         console.log(data[index]);
-
          const newListItem = document.createElement('ul');
          newListItem.innerHTML = `<li><img  width="280px" height="280px" src=${url} /></li>`;
          listResult.insertBefore(newListItem, listResult.firstElementChild);
       }
 
       output.appendChild(listResult);
+   }
+
+   paintVisits(data) {
+      console.log('hello from paintvisitis', data);
+      const output = document.getElementById('visit-counter');
+      output.innerHTML = `
+      ${data.totalCount}
+      `;
    }
 
    clearProfile() {}

@@ -228,9 +228,20 @@ button {
    display: flex;
 }
 
-.suggestions-card-item {
+.suggestion-item {
+   margin-bottom: 11px;
    width: 1000px;
    height: 36px;
+   cursor: pointer;
+   background: #f0f0f0;
+   border: 1px solid #808080;
+   box-shadow: inset -1px -1px 0 0 #b4b4b4, inset 1px 1px 0 0 #ffffff;
+   padding: 10px;
+   text-align: left;
+   &:hover {
+      background-color: $windows-grey-btn;
+      border: 1px solid #110038;
+   }
 }
 
 .suggestions-card-header {

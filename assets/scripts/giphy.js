@@ -79,16 +79,30 @@ class Giphy {
    }
 
    async visitCounter() {
-      const visitResponse = await fetch(`https://gifos-56c81.firebaseio.com/visits.json`, {
-         method: 'POST',
-         body: {
-            visits: 0,
-         },
-      });
+      // const visitResponse = await fetch(`https://gifos-56c81.firebaseio.com/visits.json`, {
+      //    method: 'POST',
+      //    body: {
+      //       visits: 0,
+      //    },
+      // });
+      const visitResponse = await fetch('https://gifos-56c81.firebaseio.com/visits.json');
 
       const visitsData = await visitResponse.json();
+      const totalCount = visitsData.total_count + 1;
+      const newVisitData = JSON.stringify({
+         total_count: totalCount,
+      });
+      console.log(newVisitData);
+
+      const registerVisit = await fetch('https://gifos-56c81.firebaseio.com/visits.json', {
+         method: 'POST',
+         body: newVisitData,
+      });
+
+      const registerData = await registerVisit.json();
+      console.log(registerData);
       return {
-         visitsData,
+         totalCount,
       };
    }
 }

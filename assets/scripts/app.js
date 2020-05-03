@@ -32,7 +32,6 @@ searchEvent.addEventListener('click', (event) => {
    const searchInput = document.getElementById('search-bar').value;
    event.preventDefault();
    giphy.getSearchResults(searchInput).then((res) => {
-      console.log('hello form search response', res);
       if (res.gifData.pagination.total_count == 0) {
          console.log('No results, im sorry');
       }
@@ -60,9 +59,6 @@ logo.addEventListener('mouseleave', () => {
 });
 
 window.onload = () => {
-   giphy.visitCounter().then((res) => {
-      console.log(res);
-   });
    ui.switchTheme();
    giphy.getTrendingResults().then((res) => {
       ui.paintTrendingGifs(res);
@@ -90,5 +86,8 @@ window.onload = () => {
       ui.paintSuggestionsImage(res.randomData.data);
 
       // ui.paintRandomGifs(res.randomData.data);
+   });
+   giphy.visitCounter().then((res) => {
+      ui.paintVisits(res);
    });
 };
