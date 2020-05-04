@@ -92,7 +92,6 @@ class Giphy {
       const newVisitData = JSON.stringify({
          total_count: totalCount,
       });
-      console.log(newVisitData);
 
       const registerVisit = await fetch('https://gifos-56c81.firebaseio.com/visits.json', {
          method: 'POST',
@@ -100,7 +99,6 @@ class Giphy {
       });
 
       const registerData = await registerVisit.json();
-      console.log(registerData);
       return {
          totalCount,
       };

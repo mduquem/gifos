@@ -13,18 +13,12 @@ startUpload.addEventListener('click', () => {
          createNewGif.addEventListener('click', () => {
             browser
                .startRecording()
-               .then()
+               .then((res) => {
+                  console.log(res);
+               })
                .catch((err) => {});
          });
       })
-      .catch((err) => {});
-});
-
-const stopRecording = document.getElementById('stop-recording');
-stopRecording.addEventListener('click', () => {
-   browser
-      .stopRecording()
-      .then((res) => {})
       .catch((err) => {});
 });
 

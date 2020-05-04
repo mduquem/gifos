@@ -3,21 +3,25 @@
    <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Document</title>
+      <title>Carga un vídeo</title>
       <link rel="stylesheet" href="assets/css/styles.css" />
    </head>
    <body>
       <div class="container">
          <div class="search-nav">
-            <a id="logo-anchor" href="/">
-               <img id="logo" src="assets/img/gifOF_logo.png" alt="gifOS Logo" />
-            </a>
+            <div class="logo-group">
+               <a id="back-anchor" href="/">
+                  <img id="back" src="assets/svg/arrow.svg" alt="Back" />
+               </a>
+               <a id="logo-anchor" href="/">
+                  <img id="logo" src="assets/img/gifOF_logo.png" alt="gifOS Logo" />
+               </a>
+            </div>
+
             <div class="create-group-container">
                <a href="video-recorder.html"><button class="main-btn">Crear Guifos</button> </a>
 
-               <div>
-                  <button id="theme-switch" class="dark-form main-btn">Elegir tema</button>
-               </div>
+               <button id="theme-switch" class="dark-form main-btn">Elegir tema</button>
                <div class="btn-theme-group">
                   <button id="day-theme" class="theme-btn">Sailor Day</button>
                   <button id="night-theme" class="theme-btn">
@@ -28,32 +32,32 @@
             </div>
          </div>
          <a class="main-btn" href="index.html">Go To Home</a>
-         <button class="main-btn" id="start">Comenzar</button>
-         <button class="main-btn">Grabar</button>
-         <button class="main-btn" id="stop-recording">Stop</button>
          <button class="main-btn" id="upload-gif">Subir Archivo</button>
          <div id="card-container" class="card-container">
             <div class="search-input-header">
                <p>Crear Guifos</p>
             </div>
             <div class="info-group">
-               <h5>Aquí podrás crear tus propios guifos</h5>
-               <p>
-                  Crear tu guifo es muy fácil, graba cualquier imagen con tu cámara y obtén guifos
-                  personalizados. Los pasos para crear tu guifo son: ¿Quieres comenzar a crear tu
-                  guifo ahora?
-               </p>
-               <ol>
-                  <li>Dar permisos de acceso a la cámara (sólo por el tiempo de uso)</li>
-                  <li>Capturar tu momento guifo</li>
+               <img width="32px" height="32px" src="assets/img/window.png" alt="window" />
+               <div>
+                  <h3>Aquí podrás crear tus propios guifos</h3>
+                  <p>
+                     Crear tu guifo es muy fácil, graba cualquier imagen con tu cámara y obtén
+                     guifos personalizados. Los pasos para crear tu guifo son: ¿Quieres comenzar a
+                     crear tu guifo ahora?
+                  </p>
+                  <ol>
+                     <li>Dar permisos de acceso a la cámara (sólo por el tiempo de uso)</li>
+                     <li>Capturar tu momento guifo</li>
 
-                  <li>Revisar el momento</li>
+                     <li>Revisar el momento</li>
 
-                  <li>Listo para subir y compartir!</li>
-               </ol>
-               <div class="button-group">
-                  <button class="main-btn">Cancelar</button>
-                  <button id="first-success-btn" class="main-btn">Comenzar</button>
+                     <li>Listo para subir y compartir!</li>
+                  </ol>
+                  <div class="button-group">
+                     <button class="main-btn">Cancelar</button>
+                     <button id="first-success-btn" class="main-btn">Comenzar</button>
+                  </div>
                </div>
             </div>
          </div>

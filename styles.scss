@@ -3,6 +3,7 @@ $blue: #110038;
 $windows-grey: #e6e6e6;
 $windows-grey-btn: #b4b4b4;
 $blue-gradient: linear-gradient(270deg, #f7c9f3 0%, #4180f6 100%);
+$bg-btn-danger: 'red';
 
 :root {
    --primary-color: #fdf4fd;
@@ -73,6 +74,7 @@ button {
 
 .create-group-container {
    display: flex;
+   align-items: center;
 }
 
 .btn-unstyled {
@@ -100,6 +102,7 @@ button {
    margin-bottom: 16px;
    display: flex;
    justify-content: space-between;
+   align-items: center;
 }
 
 .search-input {
@@ -199,7 +202,7 @@ button {
    padding: 0;
    height: 304px;
    width: 280px;
-   margin-right: 24px;
+   margin-right: 22px;
    background: #f0f0f0;
    border: 1px solid #080808;
    box-shadow: inset -1px -1px 0 0 #b4b4b4, inset 1px 1px 0 0 #ffffff;
@@ -246,7 +249,6 @@ button {
 
 .suggestions-card-header {
    background-image: $blue-gradient;
-   width: 100%;
    height: 24px;
    margin: 0;
    display: flex;
@@ -305,10 +307,13 @@ button {
    position: relative;
 }
 
-.overlapped-btn {
+.output-video-btn {
    position: absolute;
-   top: 50%;
+   top: 80%;
    left: 0;
+}
+
+.overlapped-btn {
 }
 
 .button-group {
@@ -341,4 +346,28 @@ button {
 
 .search-results {
    width: 100%;
+}
+
+.recording-btn {
+   background-color: $bg-btn-danger;
+   color: $bg-btn-danger;
+}
+
+.logo-group {
+   display: flex;
+   align-items: center;
+}
+
+#back-anchor {
+   margin-right: 20px;
+}
+
+.info-group {
+   display: flex;
+}
+
+.stop-btn {
+   background: #ff6161;
+   border: 1px solid #110038;
+   box-shadow: inset -1px -1px 0 0 #993a3a, inset 1px 1px 0 0 #ffffff;
 }
