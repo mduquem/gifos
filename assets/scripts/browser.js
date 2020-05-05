@@ -1,15 +1,16 @@
 class Browser {
    constructor() {
       this.card = document.getElementById('card-container');
-
       this.apiKey = 'EVXJhVK8O4M0zOGlqExmwJZXNiX9rMTE';
 
       this.stream = null;
       this.recorder = null;
       this.file = null;
+      this.giphy = new Giphy();
    }
 
    async getStream() {
+      console.log('hola');
       const constraints = {
          audio: false,
          video: {
@@ -23,7 +24,7 @@ class Browser {
             </video>
             <div class="output-video-btn" id="btn-group">
                <div id="video-timer"></div>
-               <button id="create-gif-btn" class="main-btn overlapped-btn" style="z-index: 200">Capturar</button>
+               <button id="create-gif-btn" class="main-btn overlapped-btn" style="z-index: 200"> <img src="../assets/svg/camera.svg" alt="Icono de una cámara" />Capturar</button>
             </div>
 
          </div>
@@ -33,7 +34,6 @@ class Browser {
 `;
       try {
          this.stream = await navigator.mediaDevices.getUserMedia(constraints);
-         // /* use the stream */
          const video = document.getElementById('video-output');
          video.srcObject = this.stream;
          video.play();
@@ -64,7 +64,61 @@ class Browser {
             let blob = recorder.getBlob();
             let file = new FormData();
             file.append('file', blob, 'myGif.gif');
+            uploadBtn.onclick = () => {
+               giphy
+                  .uploadGif(file)
+                  .then((res) => {
+                     console.log(res);
+                     this.card.innerHTML = `
+                  Guifo creado con éxito
+                  <button class="main-btn" id="copy-gif">Copiar enlace</button>
+                  <button class="main-btn" id="download-gif">Descargar gif</button
+                  `;
+                     const copyBtn = document.getElementById('copy-gif');
+                     const downloadBtn = document.getElementById('download-gif');
+
+                     copyBtn.onclick = () => {
+                        navigator.clipboard.writeText(`https://giphy.com/gifs/${res.gifId}`);
+                     };
+
+                     downloadBtn.onclick = () => {
+                        invokeSaveAsDialog(blob);
+                     };
+                  })
+                  .catch((err) => {
+                     this.card.innerHTML = `Erro al crear tu guifo: ${err}`;
+                  });
+               this.stream.getTracks().forEach((track) => {
+                  track.stop();
+               });
+               this.card.innerHTML = `
+               <div>
+               <img alt="icono de globo" src="../assets/img/globe_img.png"/>
+
+                  Estamos suubiendo tu guifo...
+               </div>
+               
+               `;
+            };
+
+            repeteBtn.onclick = () => {
+               this.getStream()
+                  .then((res) => {
+                     currentStep = 2;
+                     const createNewGif = document.getElementById('create-gif-btn');
+                     createNewGif.addEventListener('click', () => {
+                        browser
+                           .startRecording()
+                           .then((res) => {
+                              console.log(res);
+                           })
+                           .catch((err) => {});
+                     });
+                  })
+                  .catch((err) => {});
+            };
          });
+
          btnGroup.replaceChild(uploadBtn, btnGroup.lastElementChild);
 
          btnGroup.insertBefore(repeteBtn, btnGroup.lastElementChild);
@@ -109,20 +163,5 @@ class Browser {
          console.log(err);
          return err;
       }
-   }
-
-   async uploadGif() {
-      const config = {
-         method: 'POST',
-         body: this.body,
-      };
-
-      try {
-         const uploadResponse = await fetch(
-            `https://upload.giphy.com/v1/gifs?api_key=${this.apiKey}&file${this.body}`,
-            config
-         );
-         return uploadResponse;
-      } catch (err) {}
    }
 }

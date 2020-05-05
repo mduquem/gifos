@@ -304,16 +304,25 @@ button {
 }
 
 .video-output-group {
-   position: relative;
+   display: flex;
+   flex-direction: column;
 }
 
 .output-video-btn {
-   position: absolute;
-   top: 80%;
+   background-color: $windows-grey;
+   display: flex;
+   align-items: center;
+
+   width: 100%;
+   height: 76px;
+   top: 100%;
    left: 0;
 }
 
 .overlapped-btn {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
 }
 
 .button-group {

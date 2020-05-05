@@ -6,9 +6,8 @@ class Giphy {
       this.trendEndpoint = 'https://api.giphy.com/v1/gifs/trending';
       this.uploadEndpoint = 'https://upload.giphy.com/v1/gifs?';
       this.idEndpoint = 'https://api.giphy.com/v1/gifs';
-      this.uploadEndpoint = this.apiKey = 'EVXJhVK8O4M0zOGlqExmwJZXNiX9rMTE';
+      this.apiKey = 'EVXJhVK8O4M0zOGlqExmwJZXNiX9rMTE';
       this.body = null;
-      this.browser = new Browser();
    }
 
    async getSearchResults(search) {
@@ -55,27 +54,24 @@ class Giphy {
       };
    }
 
-   async uploadGif() {
+   async uploadGif(file) {
+      console.log('inside upload gif', file);
+
       const headers = new Headers();
-      const uploadFile = this.browser.stopRecording();
       const uploadResponse = await fetch(`${this.uploadEndpoint}api_key=${this.apiKey}`, {
          method: 'POST',
          headers,
-         body: uploadFile,
+         body: file,
          cors: 'no-cors',
       });
 
       const uploadData = await uploadResponse.json();
       const gifId = uploadData.data.id;
-
+      console.log(uploadData);
       return {
          uploadData,
          gifId,
       };
-   }
-
-   async getUploadedGif(id) {
-      const response = fetch(`${this.idEndpoint}`);
    }
 
    async visitCounter() {
