@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Chakra+Petch&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Chakra+Petch:400,700&display=swap");
 :root {
   --primary-color: #fdf4fd;
   --bg-color: #fdf4fd;
@@ -26,7 +26,7 @@ body {
 }
 
 button {
-  font-weight: 900;
+  font-weight: 400;
 }
 
 .container {
@@ -69,7 +69,7 @@ button {
 
 .create-group-container {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .btn-unstyled {
@@ -97,7 +97,7 @@ button {
   margin-bottom: 16px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .search-input {
@@ -160,7 +160,6 @@ button {
   letter-spacing: 0;
   line-height: 18px;
   margin-right: 8px;
-  cursor: pointer;
 }
 @media (max-width: 375px) {
   .search-btn {
@@ -171,11 +170,11 @@ button {
 .active-search {
   background-color: var(--btn-color);
   color: var(--btn-font-color);
+  cursor: pointer;
 }
 
 .suggestions {
   background-color: #e6e6e6;
-  margin-top: 64px;
 }
 
 .suggestions-header {
@@ -306,6 +305,16 @@ button {
   flex-direction: column;
 }
 
+.video-output {
+  background: #e6e6e6;
+  box-shadow: inset -2px -2px 0 0 #b4b4b4, inset 2px 2px 0 0 #ffffff;
+}
+
+.camera-addon {
+  background: #f7c9f3;
+  border: 1px solid #110038;
+}
+
 .output-video-btn {
   background-color: #e6e6e6;
   display: flex;
@@ -370,12 +379,42 @@ button {
 
 .info-group {
   display: flex;
+  padding: 60px 60px 60px 20px;
 }
 
 .stop-btn {
   background: #ff6161;
   border: 1px solid #110038;
   box-shadow: inset -1px -1px 0 0 #993a3a, inset 1px 1px 0 0 #ffffff;
+}
+
+.first-page ul {
+  list-style: none;
+}
+
+.uploading-group {
+  background: #ffffff;
+  border: 1px solid #979797;
+  box-shadow: inset -2px -2px 0 0 #e6e6e6, inset 2px 2px 0 0 #000000;
+}
+
+.loader .loader {
+  border: 16px solid #f3f3f3;
+  /* Light grey */
+  border-top: 16px solid #3498db;
+  /* Blue */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /*# sourceMappingURL=styles.css.map */

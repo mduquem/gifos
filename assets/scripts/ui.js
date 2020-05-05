@@ -116,8 +116,7 @@ class UI {
          listItem.appendChild(btnElement);
          resultList.appendChild(listItem);
 
-         btnElement.setAttribute('onclick', `this.giphy.getSearchResults(${element})`);
-         btnElement.onclick = function () {
+         btnElement.onclick = () => {
             this.giphy.getSearchResults(element).then((res) => {
                this.paintSearchResults(res.gifData.data);
             });
@@ -174,6 +173,7 @@ class UI {
    paintSearchResults(data) {
       const output = document.getElementById('search-results');
       const listResult = document.createElement('ul');
+
       listResult.className = 'search-results-list';
 
       output.innerHTML = '';

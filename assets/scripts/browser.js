@@ -10,7 +10,6 @@ class Browser {
    }
 
    async getStream() {
-      console.log('hola');
       const constraints = {
          audio: false,
          video: {
@@ -20,11 +19,19 @@ class Browser {
       this.card.innerHTML = `
       <div class="video-output-group">
     
+      <div class="suggestions-card-header">
+      <p id="header">Un Chequeo Antes de Empezar</p> 
+       <button class="btn-unstyled">
+          <img src="assets/svg/button close.svg" alt="Boton cerrar" />
+       </button>
+    </div>
             <video class="video-output" id="video-output">
             </video>
             <div class="output-video-btn" id="btn-group">
                <div id="video-timer"></div>
-               <button id="create-gif-btn" class="main-btn overlapped-btn" style="z-index: 200"> <img src="../assets/svg/camera.svg" alt="Icono de una cámara" />Capturar</button>
+               <button id="create-gif-btn" class="main-btn overlapped-btn" style="z-index: 200">
+
+                <img  src="../assets/svg/camera.svg" alt="Icono de una cámara" />Capturar</button>
             </div>
 
          </div>
@@ -41,6 +48,40 @@ class Browser {
          return this.stream;
       } catch (err) {
          /* handle the error */
+         return err;
+      }
+   }
+
+   async startRecording() {
+      document.getElementById('header').innerText = 'Capturando Tu Guifo';
+      const btnGroup = document.getElementById('btn-group');
+
+      const newBtn = document.createElement('button-group');
+      newBtn.innerHTML = '<img src="../assets/svg/recording.svg" alt="Grabando" />Detener';
+      newBtn.style.zIndex = '900px';
+      newBtn.classList.add('main-btn', 'overlapped-btn', 'stop-btn');
+
+      const recorder = RecordRTC(this.stream, {
+         type: 'gif',
+         frameRate: 1,
+         quality: 10,
+         width: 360,
+         hidden: 240,
+
+         onGifRecordingStarted: function () {
+            btnGroup.replaceChild(newBtn, btnGroup.lastElementChild);
+         },
+      });
+
+      try {
+         recorder.startRecording();
+         newBtn.onclick = () => {
+            this.stopRecording(recorder);
+         };
+
+         return recorder;
+      } catch (err) {
+         console.log(err);
          return err;
       }
    }
@@ -68,11 +109,18 @@ class Browser {
                giphy
                   .uploadGif(file)
                   .then((res) => {
-                     console.log(res);
+                     console.log(file.get('file'));
+                     localStorage.setItem(`gif${res.gifId}`, JSON.stringify(blob));
+
                      this.card.innerHTML = `
-                  Guifo creado con éxito
-                  <button class="main-btn" id="copy-gif">Copiar enlace</button>
-                  <button class="main-btn" id="download-gif">Descargar gif</button
+                     <div class="search-input-header">     <p>Guifo creado con éxito</p></div>
+                     <div>
+                     </div>
+             <div class="info-group">
+             <button class="main-btn" id="copy-gif">Copiar enlace</button>
+             <button class="main-btn" id="download-gif">Descargar gif</button>
+             </div>
+              
                   `;
                      const copyBtn = document.getElementById('copy-gif');
                      const downloadBtn = document.getElementById('download-gif');
@@ -92,10 +140,19 @@ class Browser {
                   track.stop();
                });
                this.card.innerHTML = `
-               <div>
-               <img alt="icono de globo" src="../assets/img/globe_img.png"/>
+               <div class="search-input-header"><p>Subiendo Guifo
+               </p></div>
+                  <div class="uploading-group">
+                  <img alt="icono de globo" src="../assets/img/globe_img.png"/>
 
-                  Estamos suubiendo tu guifo...
+                 <strong>Estamos suubiendo tu guifo..</strong> .
+                  </div>
+
+                  <span class="loader"></span>
+              
+
+               <div>
+              
                </div>
                
                `;
@@ -128,39 +185,6 @@ class Browser {
       } catch (err) {
          video.pause();
 
-         return err;
-      }
-   }
-
-   async startRecording() {
-      const btnGroup = document.getElementById('btn-group');
-
-      const newBtn = document.createElement('button-group');
-      newBtn.innerHTML = '<img src="../assets/svg/recording.svg" alt="Grabando" />Detener';
-      newBtn.style.zIndex = '900px';
-      newBtn.classList.add('main-btn', 'overlapped-btn', 'stop-btn');
-
-      const recorder = RecordRTC(this.stream, {
-         type: 'gif',
-         frameRate: 1,
-         quality: 10,
-         width: 360,
-         hidden: 240,
-
-         onGifRecordingStarted: function () {
-            btnGroup.replaceChild(newBtn, btnGroup.lastElementChild);
-         },
-      });
-
-      try {
-         recorder.startRecording();
-         newBtn.onclick = () => {
-            this.stopRecording(recorder);
-         };
-
-         return recorder;
-      } catch (err) {
-         console.log(err);
          return err;
       }
    }
