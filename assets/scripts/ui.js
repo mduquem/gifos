@@ -104,28 +104,35 @@ class UI {
       resultList.className = 'result-list';
 
       suggestionsOutput.innerHTML = '';
-      for (let index = 0; index < 3; index++) {
-         const element = data[index].title;
-         const listItem = document.createElement('li');
+      console.log(data);
 
-         const btnElement = document.createElement('button');
-         btnElement.className = 'suggestion-item';
+      if (data) {
+         for (let index = 0; index < 3; index++) {
+            let element = data[index].title;
 
-         btnElement.innerHTML = `${element}`;
-         btnElement.setAttribute('id', 'suggestion-item');
-         listItem.appendChild(btnElement);
-         resultList.appendChild(listItem);
+            const listItem = document.createElement('li');
 
-         btnElement.onclick = () => {
-            this.giphy.getSearchResults(element).then((res) => {
-               this.paintSearchResults(res.gifData.data);
-            });
-         };
+            const btnElement = document.createElement('button');
+            btnElement.className = 'suggestion-item';
+
+            btnElement.innerHTML = `${element}`;
+            btnElement.setAttribute('id', 'suggestion-item');
+            listItem.appendChild(btnElement);
+            resultList.appendChild(listItem);
+
+            btnElement.onclick = () => {
+               this.giphy.getSearchResults(element).then((res) => {
+                  this.paintSearchResults(res.gifData.data);
+               });
+            };
+         }
+         suggestionsOutput.appendChild(resultList);
+         setTimeout(() => {
+            suggestionsOutput.innerHTML = '';
+         }, 10000);
+      } else {
+         alert('No Results. Search Again');
       }
-      suggestionsOutput.appendChild(resultList);
-      setTimeout(() => {
-         suggestionsOutput.innerHTML = '';
-      }, 10000);
    }
 
    paintSuggestionsImage(data) {
@@ -134,7 +141,14 @@ class UI {
       resultImageList.className = 'result-list-image';
       const element = data.images.downsized.url;
 
-      const title = data.title;
+      let title = data.title;
+
+      title = title.replace(/GIF/, '');
+      title = title.replace(/by(.*)/, '');
+      title = title.replace(/ /, '');
+      title = title && title.charAt(0).toUpperCase() + title.substring(1);
+
+      console.log(title);
 
       const listItem = document.createElement('div');
       listItem.className = 'suggestions-image-item';
@@ -151,7 +165,7 @@ class UI {
          <img class="suggestions-card-image" height="280px" width="280px" src=${element} alt="" />
         
          
-         <button  id="suggestions-btn" class="suggestions-button">Ver más</button>
+         <button  id="suggestions-btn" class="suggestions-btn">Ver más</button>
 
     
     
@@ -173,8 +187,10 @@ class UI {
    paintSearchResults(data) {
       const output = document.getElementById('search-results');
       const listResult = document.createElement('ul');
-
+      const tagsResult = document.createElement('ul');
+      tagsResult.className = 'tags-results-list';
       listResult.className = 'search-results-list';
+      console.log(data);
 
       output.innerHTML = '';
 
@@ -182,15 +198,14 @@ class UI {
          const url = data[index].images.downsized.url;
 
          const newListItem = document.createElement('li');
-         newListItem.innerHTML = `<img class="img-results-list"  width="280px" height="280px" src=${url} />`;
-         listResult.insertBefore(newListItem, listResult.firstElementChild);
+         newListItem.innerHTML = `<img class="trending-image"  width="280px" height="280px" src=${url} />`;
+         listResult.insertBefore(newListItem, listResult.lastElementChild);
       }
 
       output.appendChild(listResult);
    }
 
    paintVisits(data) {
-      console.log('hello from paintvisitis', data);
       const output = document.getElementById('visit-counter');
       output.innerHTML = `
       ${data.totalCount}

@@ -9,7 +9,12 @@ toggleSwitchBtn.addEventListener('click', () => {
 
 const searchInput = document.getElementById('search-bar');
 searchInput.addEventListener('keyup', (event) => {
-   const userText = event.target.value;
+   let userText = event.target.value;
+
+   userText = userText.replace(/\s/, '+');
+   userText = userText.replace(/GIF/, '');
+   console.log(userText);
+
    const searchBtn = document.getElementById('search-btn');
 
    if (userText != '') {
@@ -33,10 +38,11 @@ searchEvent.addEventListener('click', (event) => {
    if (searchInput != '') {
       giphy.getSearchResults(searchInput).then((res) => {
          if (res.gifData.pagination.total_count == 0) {
-            console.log('No results, im sorry');
          }
          ui.paintSearchResults(res.gifData.data);
       });
+
+      giphy.getRelatedResults(searchInput).then((res) => {});
    }
 });
 
@@ -92,3 +98,6 @@ window.onload = () => {
       ui.paintVisits(res);
    });
 };
+
+const myGifsLink = document.getElementById('my-gifs-link');
+myGifsLink.addEventListener('click', () => {});

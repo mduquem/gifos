@@ -22,14 +22,6 @@ startUpload.addEventListener('click', () => {
       .catch((err) => {});
 });
 
-const uploadBtn = document.getElementById('upload-gif');
-uploadBtn.addEventListener('click', () => {
-   browser
-      .uploadGif()
-      .then((res) => {})
-      .catch((err) => {});
-});
-
 window.onload = () => {
    ui.switchTheme();
 };

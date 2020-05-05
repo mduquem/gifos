@@ -43,20 +43,19 @@ class Giphy {
       };
    }
 
-   async getRelatedResults() {
+   async getRelatedResults(term) {
       const relatedResponse = await fetch(
-         `https://api.giphy.com/v1/tags/related?api_key=${key}&term="wow"`
+         `https://api.giphy.com/v1/tags/related?api_key=${key}&term=${term}`
       );
 
       const relatedData = await relatedResponse.json();
+      console.log(relatedData);
       return {
          relatedData,
       };
    }
 
    async uploadGif(file) {
-      console.log('inside upload gif', file);
-
       const headers = new Headers();
       const uploadResponse = await fetch(`${this.uploadEndpoint}api_key=${this.apiKey}`, {
          method: 'POST',
@@ -67,7 +66,6 @@ class Giphy {
 
       const uploadData = await uploadResponse.json();
       const gifId = uploadData.data.id;
-      console.log(uploadData);
       return {
          uploadData,
          gifId,

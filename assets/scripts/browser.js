@@ -81,25 +81,23 @@ class Browser {
 
          return recorder;
       } catch (err) {
-         console.log(err);
          return err;
       }
    }
 
    stopRecording(recorder) {
-      console.log('hello from stop recoding');
       const video = document.getElementById('video-output');
       const btnGroup = document.getElementById('btn-group');
 
       const repeteBtn = document.createElement('button');
       repeteBtn.innerText = 'Repetir Captura';
       repeteBtn.style.zIndex = '900px';
-      repeteBtn.classList.add('main-btn', 'overlapped-btn');
+      repeteBtn.classList.add('main-btn', 'overlapped-btn', 'secondary-btn');
 
       const uploadBtn = document.createElement('button');
       uploadBtn.innerText = 'Subir Guifo';
       uploadBtn.style.zIndex = '900px';
-      uploadBtn.classList.add('main-btn', 'overlapped-btn-right');
+      uploadBtn.classList.add('main-btn', 'overlapped-btn-right', 'secondary-btn');
       try {
          recorder.stopRecording(() => {
             let blob = recorder.getBlob();
@@ -109,7 +107,6 @@ class Browser {
                giphy
                   .uploadGif(file)
                   .then((res) => {
-                     console.log(file.get('file'));
                      localStorage.setItem(`gif${res.gifId}`, JSON.stringify(blob));
 
                      this.card.innerHTML = `
@@ -117,8 +114,8 @@ class Browser {
                      <div>
                      </div>
              <div class="info-group">
-             <button class="main-btn" id="copy-gif">Copiar enlace</button>
-             <button class="main-btn" id="download-gif">Descargar gif</button>
+             <button class="main-btn secondary-btn" id="copy-gif">Copiar enlace</button>
+             <button class="main-btn secondary-btn" id="download-gif">Descargar gif</button>
              </div>
               
                   `;
@@ -166,9 +163,7 @@ class Browser {
                      createNewGif.addEventListener('click', () => {
                         browser
                            .startRecording()
-                           .then((res) => {
-                              console.log(res);
-                           })
+                           .then((res) => {})
                            .catch((err) => {});
                      });
                   })

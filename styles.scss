@@ -70,6 +70,10 @@ button {
    box-shadow: inset -1px -1px 0 0 #997d97, inset 1px 1px 0 0 #a37d7d;
    cursor: pointer;
    color: var(--btn-font-color);
+   &:hover,
+   &:active {
+      border: 1px dashed $blue;
+   }
 }
 
 .create-group-container {
@@ -174,6 +178,7 @@ button {
 
 .suggestions {
    background-color: $windows-grey;
+   height: 120%;
 }
 
 .suggestions-header {
@@ -205,9 +210,19 @@ button {
    background: #f0f0f0;
    border: 1px solid #080808;
    box-shadow: inset -1px -1px 0 0 #b4b4b4, inset 1px 1px 0 0 #ffffff;
+   position: relative;
    img {
       cursor: pointer;
    }
+}
+
+.suggestions-btn {
+   color: white;
+   position: absolute;
+   top: 90%;
+   background: #2e32fb;
+   border: 1px solid #4c2f99;
+   box-shadow: inset -2px -2px 0 0 #2124b3, inset 2px 2px 0 0 #ffffff;
 }
 
 .result-list-image {
@@ -343,10 +358,15 @@ button {
    visibility: hidden;
    width: 150px;
    height: 36px;
-   background: #fff4fd;
-   border: 1px solid #cca6c9;
-   box-shadow: inset -1px -1px 0 0 #e6dce4, inset 1px 1px 0 0 #ffffff;
+   background: #f0f0f0;
+   border: 1px solid #808080;
+   box-shadow: inset -1px -1px 0 0 #b4b4b4, inset 1px 1px 0 0 #ffffff;
    cursor: pointer;
+   &:active {
+      background: #fff4fd;
+      border: 1px solid #cca6c9;
+      box-shadow: inset -1px -1px 0 0 #e6dce4, inset 1px 1px 0 0 #ffffff;
+   }
 }
 
 .search-results-list {
@@ -420,5 +440,15 @@ button {
       100% {
          transform: rotate(360deg);
       }
+   }
+}
+
+.secondary-btn {
+   background: #fff4fd;
+   border: 1px solid #110038;
+   box-shadow: inset -1px -1px 0 0 #997d97, inset 1px 1px 0 0 #ffffff;
+   &:hover,
+   &:active {
+      border: 1px dashed #110038;
    }
 }
