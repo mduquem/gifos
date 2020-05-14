@@ -94,10 +94,4 @@ window.onload = () => {
 
       // ui.paintRandomGifs(res.randomData.data);
    });
-   giphy.visitCounter().then((res) => {
-      ui.paintVisits(res);
-   });
 };
-
-const myGifsLink = document.getElementById('my-gifs-link');
-myGifsLink.addEventListener('click', () => {});

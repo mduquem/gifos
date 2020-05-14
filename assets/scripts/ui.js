@@ -104,7 +104,6 @@ class UI {
       resultList.className = 'result-list';
 
       suggestionsOutput.innerHTML = '';
-      console.log(data);
 
       if (data) {
          for (let index = 0; index < 3; index++) {
@@ -148,8 +147,6 @@ class UI {
       title = title.replace(/ /, '');
       title = title && title.charAt(0).toUpperCase() + title.substring(1);
 
-      console.log(title);
-
       const listItem = document.createElement('div');
       listItem.className = 'suggestions-image-item';
       listItem.innerHTML = `
@@ -190,7 +187,6 @@ class UI {
       const tagsResult = document.createElement('ul');
       tagsResult.className = 'tags-results-list';
       listResult.className = 'search-results-list';
-      console.log(data);
 
       output.innerHTML = '';
 
@@ -205,12 +201,44 @@ class UI {
       output.appendChild(listResult);
    }
 
-   paintVisits(data) {
-      const output = document.getElementById('visit-counter');
-      output.innerHTML = `
-      ${data.totalCount}
-      `;
-   }
+   paintMyGifs() {
+      let keys = Object.keys(localStorage);
+      const listResult = document.createElement('ul');
+      listResult.className = 'search-results-list';
 
-   clearProfile() {}
+      let idsString = '';
+
+      keys = keys.filter((key) => {
+         return key.substring(0, 3) === 'gif';
+      });
+
+      console.log(keys);
+      for (let index = 0; index < keys.length; index++) {
+         let element = keys[index];
+         element = element.split('gif').pop();
+         console.log(element);
+         idsString += index === keys.length ? `${element.trim()},` : `${element.trim()}`;
+         const listItem = document.createElement('li');
+         listItem.innerHTML = `<iframe class="trending-image" src="https://giphy.com/embed/${element.trim()}" width="280px" height="280px" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>`;
+         listResult.appendChild(listItem);
+      }
+
+      this.giphy
+         .getGifsById(idsString)
+         .then((res) => {
+            console.log(res);
+         })
+         .catch((err) => {
+            console.log(err);
+         });
+
+      const output = document.getElementById('gifs-output');
+      output.innerHTML = `
+      <div class="suggestions-header">
+         Mis Guifos
+      </div>
+
+      `;
+      output.appendChild(listResult);
+   }
 }

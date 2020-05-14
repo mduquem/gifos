@@ -45,13 +45,21 @@ class Giphy {
 
    async getRelatedResults(term) {
       const relatedResponse = await fetch(
-         `https://api.giphy.com/v1/tags/related?api_key=${key}&term=${term}`
+         `https://api.giphy.com/v1/tags/related?api_key=${this.apiKeykey}&term=${term}`
       );
 
       const relatedData = await relatedResponse.json();
-      console.log(relatedData);
       return {
          relatedData,
+      };
+   }
+
+   async getGifsById(ids) {
+      const response = await fetch(`api.giphy.com/v1/gifs?api_key=${this.apiKey}&ids=${ids}`);
+      const data = await response.json();
+
+      return {
+         data,
       };
    }
 
@@ -69,32 +77,6 @@ class Giphy {
       return {
          uploadData,
          gifId,
-      };
-   }
-
-   async visitCounter() {
-      // const visitResponse = await fetch(`https://gifos-56c81.firebaseio.com/visits.json`, {
-      //    method: 'POST',
-      //    body: {
-      //       visits: 0,
-      //    },
-      // });
-      const visitResponse = await fetch('https://gifos-56c81.firebaseio.com/visits.json');
-
-      const visitsData = await visitResponse.json();
-      const totalCount = visitsData.total_count + 1;
-      const newVisitData = JSON.stringify({
-         total_count: totalCount,
-      });
-
-      const registerVisit = await fetch('https://gifos-56c81.firebaseio.com/visits.json', {
-         method: 'POST',
-         body: newVisitData,
-      });
-
-      const registerData = await registerVisit.json();
-      return {
-         totalCount,
       };
    }
 }

@@ -17,24 +17,22 @@ class Browser {
          },
       };
       this.card.innerHTML = `
-      <div class="video-output-group">
-    
-      <div class="suggestions-card-header">
-      <p id="header">Un Chequeo Antes de Empezar</p> 
-       <button class="btn-unstyled">
-          <img src="assets/svg/button close.svg" alt="Boton cerrar" />
-       </button>
-    </div>
-            <video class="video-output" id="video-output">
-            </video>
-            <div class="output-video-btn" id="btn-group">
-               <div id="video-timer"></div>
-               <button id="create-gif-btn" class="main-btn overlapped-btn" style="z-index: 200">
+                     <div class="video-output-group">
+                        <div class="suggestions-card-header">
+                           <p id="header">Un Chequeo Antes de Empezar</p> 
+                           <button class="btn-unstyled">
+                              <img src="assets/svg/button close.svg" alt="Boton cerrar" />
+                           </button>
+                        </div>
+                        <video class="video-output" id="video-output">
+                        </video>
+                        <div class="output-video-btn" id="btn-group">
+                           <div id="video-timer"></div>
+                           <button id="create-gif-btn" class="main-btn overlapped-btn" style="z-index: 200">
 
-                <img  src="../assets/svg/camera.svg" alt="Icono de una cámara" />Capturar</button>
-            </div>
-
-         </div>
+                           <img  src="../assets/svg/camera.svg" alt="Icono de una cámara" />Capturar</button>
+                        </div>
+                     </div>
        
 
       
@@ -103,22 +101,28 @@ class Browser {
             let blob = recorder.getBlob();
             let file = new FormData();
             file.append('file', blob, 'myGif.gif');
+
+            this.stream.getTracks().forEach((track) => {
+               track.stop();
+            });
             uploadBtn.onclick = () => {
                giphy
                   .uploadGif(file)
                   .then((res) => {
-                     localStorage.setItem(`gif${res.gifId}`, JSON.stringify(blob));
-
                      this.card.innerHTML = `
-                     <div class="search-input-header">     <p>Guifo creado con éxito</p></div>
-                     <div>
-                     </div>
-             <div class="info-group">
-             <button class="main-btn secondary-btn" id="copy-gif">Copiar enlace</button>
-             <button class="main-btn secondary-btn" id="download-gif">Descargar gif</button>
-             </div>
-              
-                  `;
+                        <div class="search-input-header">     
+                           <p>Guifo creado con éxito</p>
+                        </div>
+   
+                           
+   
+                        <div class="info-group">
+                           <button class="main-btn secondary-btn" id="copy-gif">Copiar enlace</button>
+                           <button class="main-btn secondary-btn" id="download-gif">Descargar gif</button>
+                        </div>
+                 
+                     `;
+
                      const copyBtn = document.getElementById('copy-gif');
                      const downloadBtn = document.getElementById('download-gif');
 
@@ -129,13 +133,12 @@ class Browser {
                      downloadBtn.onclick = () => {
                         invokeSaveAsDialog(blob);
                      };
+                     localStorage.setItem(`gif${res.gifId}`, JSON.stringify(res.gifId));
                   })
                   .catch((err) => {
                      this.card.innerHTML = `Erro al crear tu guifo: ${err}`;
                   });
-               this.stream.getTracks().forEach((track) => {
-                  track.stop();
-               });
+
                this.card.innerHTML = `
                <div class="search-input-header"><p>Subiendo Guifo
                </p></div>

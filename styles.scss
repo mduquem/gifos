@@ -177,7 +177,6 @@ button {
 }
 
 .suggestions {
-   background-color: $windows-grey;
    height: 120%;
 }
 
@@ -202,17 +201,16 @@ button {
 
 .suggestions-card {
    margin: 0;
-   margin-right: 0;
    padding: 0;
    height: 304px;
    width: 280px;
-   margin-right: 22px;
+   margin-right: 24px;
    background: #f0f0f0;
-   border: 1px solid #080808;
    box-shadow: inset -1px -1px 0 0 #b4b4b4, inset 1px 1px 0 0 #ffffff;
    position: relative;
-   img {
-      cursor: pointer;
+
+   &:hover {
+      border: 1px solid #080808;
    }
 }
 
@@ -223,6 +221,9 @@ button {
    background: #2e32fb;
    border: 1px solid #4c2f99;
    box-shadow: inset -2px -2px 0 0 #2124b3, inset 2px 2px 0 0 #ffffff;
+   width: 81px;
+   height: 34px;
+   cursor: pointer;
 }
 
 .result-list-image {
@@ -293,6 +294,7 @@ button {
    flex-wrap: wrap;
    padding: 0;
    justify-content: center;
+   align-items: center;
    img {
       height: 280px;
       width: 280px;
@@ -300,8 +302,7 @@ button {
 }
 
 .trending-image {
-   cursor: pointer;
-   margin-right: 16px;
+   margin-right: 18px;
    &:hover {
       border: 1px solid #110038;
    }
@@ -370,6 +371,7 @@ button {
 }
 
 .search-results-list {
+   padding: 0;
    list-style: none;
    display: flex;
    width: 100%;
@@ -378,7 +380,6 @@ button {
 }
 
 .image-results-list {
-   cursor: pointer;
    margin-right: 20px;
 }
 
@@ -402,6 +403,8 @@ button {
 
 .info-group {
    display: flex;
+   align-items: center;
+   justify-content: center;
    padding: 60px 60px 60px 20px;
 }
 
@@ -418,6 +421,11 @@ button {
 }
 
 .uploading-group {
+   padding: 80px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
    background: #ffffff;
    border: 1px solid #979797;
    box-shadow: inset -2px -2px 0 0 #e6e6e6, inset 2px 2px 0 0 #000000;
@@ -444,6 +452,7 @@ button {
 }
 
 .secondary-btn {
+   color: black;
    background: #fff4fd;
    border: 1px solid #110038;
    box-shadow: inset -1px -1px 0 0 #997d97, inset 1px 1px 0 0 #ffffff;

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Mis Guifos</title>
+      <link rel="stylesheet" href="assets/css/styles.css" />
+   </head>
+   <body>
+      <div class="container">
+         <div class="search-nav">
+            <div class="logo-group">
+               <a id="back-anchor" href="/">
+                  <img id="back" src="assets/svg/arrow.svg" alt="Back" />
+               </a>
+               <a id="logo-anchor" href="/">
+                  <img id="logo" src="assets/img/gifOF_logo.png" alt="gifOS Logo" />
+               </a>
+            </div>
+
+            <div class="create-group-container">
+               <a href="video-recorder.html"><button class="main-btn">Crear Guifos</button> </a>
+
+               <button id="theme-switch" class="dark-form main-btn">Elegir tema</button>
+               <div class="btn-theme-group">
+                  <button id="day-theme" class="theme-btn">Sailor Day</button>
+                  <button id="night-theme" class="theme-btn">
+                     Sailor Night
+                  </button>
+               </div>
+               <a href="my-gifs.html">
+                  <button class="my-gifs-btn"><strong>M</strong>is Guifos</button>
+               </a>
+            </div>
+         </div>
+
+         <div id="gifs-output" class="card-container"></div>
+      </div>
+
+      <script src="assets/scripts/ui.js"></script>
+      <script src="assets/scripts/browser.js"></script>
+      <script src="assets/scripts/giphy.js"></script>
+      <script src="assets/scripts/app-gifs.js"></script>
+   </body>
+</html>
